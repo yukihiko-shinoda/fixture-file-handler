@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+flake8 = "*"
+pylint = "*"
+pytest = "*"
+pytest-cov = "*"
+radon = "*"
+twine = "*"
+unittest2 = "*"
+
+[requires]
+python_version = "3.7"
+
+[scripts]
+test = "cd tests && pytest"
+coverage = "cd tests && pytest --verbose --cov=fixturefilehandler --cov-report=term-missing"
+flake8 = "flake8 --max-line-length=120 --statistics --show-source --radon-show-closures ."
+cc = "radon cc --show-complexity --min B ."
+mi = "radon mi --show ."
+clear = "rm -rf fixturefilehandler.egg-info/* build/* dist/*"
+build = "python setup.py sdist bdist_wheel"
+deploy = "twine upload --repository pypi dist/*"
