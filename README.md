@@ -53,7 +53,7 @@ target path|backup path
 existing file|&nbsp;
 
 
-### Deoloyer
+### Deployer
 
 target path|backup path|resource path
 ---|---|---
@@ -87,7 +87,7 @@ because it's unexpected situation and developer may want to resque its backup fi
 
 ```python
 from pathlib import Path
-import unittest2 as unittest
+import unittest
 
 from fixturefilehandler.factories import VacatorFactory
 from fixturefilehandler.file_paths import RelativeVacateFilePath
@@ -174,7 +174,7 @@ Case when unittest:
 ```python
 from pathlib import Path
 
-import unittest2 as unittest
+import unittest
 
 from fixturefilehandler import ResourceFileDeployer
 from fixturefilehandler.file_paths import RelativeDeployFilePath

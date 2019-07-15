@@ -1,14 +1,13 @@
+"""This module implements tests for file_paths module."""
 import os
 from pathlib import Path
-
 import pytest
-
 from fixturefilehandler.file_paths import SimpleDeployFilePath, RelativeDeployFilePath, SimpleVacateFilePath, \
     RelativeVacateFilePath, YamlConfigFilePathBuilder
 
 
 class TestSimpleVacateFilePath:
-    """Tests for RelativeFilePath."""
+    """Tests for SimpleVacateFilePath."""
     @staticmethod
     @pytest.mark.parametrize('path_target, path_backup', [
         (Path('path_a'), Path('path_b')),
@@ -22,7 +21,7 @@ class TestSimpleVacateFilePath:
 
 
 class TestSimpleDeployFilePath:
-    """Tests for RelativeFilePath."""
+    """Tests for SimpleDeployFilePath."""
     @staticmethod
     @pytest.mark.parametrize('path_target, path_backup, path_resource', [
         (Path('path_a'), Path('path_b'), Path('path_c')),
@@ -37,6 +36,7 @@ class TestSimpleDeployFilePath:
 
 
 class TestRelativeVacateFilePath:
+    """Tests for RelativeVacateFilePath."""
     @staticmethod
     def test_default():
         """Each property returns appropriate path based on python execution directory."""

@@ -1,7 +1,6 @@
 """Tests for pytest scenario"""
 import shutil
 from pathlib import Path
-
 import pytest
 
 from tests.testscenarios import CONTENT_IN_PROJECT_TEST_RESOURCE_FILE, PATH_YOUR_PROJECT_HOME, \
@@ -12,12 +11,12 @@ from yourproduct.pytest_context_basic import fixture_file  # noqa: F401
 # noinspection PyUnresolvedReferences
 from yourproduct.pytest_context_advanced import fixture_file_advanced  # noqa: F401
 
-
+# pylint: disable=invalid-name
 pytest_plugins = ['pytester']
 
 
 class TestConfigHandlerPytest:
-    """Tests for pytest scenario"""
+    """Tests for basic pytest scenario."""
     @staticmethod
     def test(fixture_file):  # noqa: F811
         """Config file for test should be loaded."""
@@ -26,6 +25,7 @@ class TestConfigHandlerPytest:
 
 @pytest.fixture
 def directory_testdir(testdir):
+    """This fixture prepares basic directory structure on testdir."""
     sample_code = (PATH_YOUR_PROJECT_HOME / 'pytest_context_basic.py').read_text()
     print(testdir.makeconftest(
         f"import sys\nsys.path.append(" + rf'{str(PATH_PROJECT_HOME).__repr__()}' + ")\n" + sample_code
@@ -40,11 +40,13 @@ def directory_testdir(testdir):
 
 @pytest.fixture
 def directory_target_testdir(directory_testdir):
+    """Thiws fixture prepares basic directory structure and resource file on testdir."""
     shutil.copy(str(PATH_TEST_RESOURCES_HOME / 'test.txt.dist'), str(Path(directory_testdir.tmpdir) / 'test.txt'))
     yield directory_testdir
 
 
 class TestConfigHandlerPytestBeforeAfter:
+    """Tests for basic pytest scenario including state before / after fixture works."""
     @staticmethod
     def test_case_when_target_exist(directory_target_testdir):
         """
@@ -73,7 +75,7 @@ class TestConfigHandlerPytestBeforeAfter:
 
 
 class TestAdvancedConfigHandlerPytest:
-    """Tests for pytest scenario"""
+    """Tests for advanced pytest scenario."""
     @staticmethod
     def test_advanced(fixture_file_advanced):  # noqa: F811
         """Config file for test should be loaded."""

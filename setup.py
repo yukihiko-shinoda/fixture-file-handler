@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 """This module implements build settings."""
-
 from setuptools import setup
 from setuptools import find_packages
 
@@ -12,7 +11,7 @@ def main():
 
     setup(
         name='fixturefilehandler',
-        version='1.0.0',
+        version='1.1.0',
         description=(
             'This project helps you to vacate specific file path '
             'or deploy resource file into specific file path when unit testing.'
@@ -22,6 +21,7 @@ def main():
         author='Yukihiko Shinoda',
         author_email='yuk.hik.future@gmail.com',
         packages=find_packages(exclude=("tests*", "yourproduct*")),
+        package_data={"fixturefilehandler": ["py.typed"]},
         install_requires=[],
         url="https://github.com/yukihiko-shinoda/fixture-file-handler",
         keywords="fixture file vacate deploy unittest pytest testing",

@@ -1,8 +1,9 @@
 """Tests for unittest scenario"""
 import pytest
 
-from tests.testlibraries import fixture_file_for_test, file_path_empty_for_test
-from tests.testscenarios import RESOURCE_FILE_PATH, FILE_PATH, CONTENT_IN_TEST_RESOURCE_FILE, \
+from tests.testlibraries.fixturefilehandlerfortest.fixture_file_handlers_for_test import TargetFilePathVacatorForTest, \
+    FixtureFileDeployerForTest
+from tests.testscenarios import FILE_PATH_DEPLOY, FILE_PATH_VACATE, CONTENT_IN_TEST_RESOURCE_FILE, \
     CONTENT_IN_PROJECT_TEST_RESOURCE_FILE_FOR_ADVANCED
 from yourproduct.unittest_context_advanced import AdvancedConfigurableTestCase
 from yourproduct.unittest_context_basic import ConfigurableTestCase
@@ -13,20 +14,33 @@ class TestConfigHandlerUnittest(ConfigurableTestCase):
     @staticmethod
     def test():
         """Config file for test should be loaded."""
-        assert not RESOURCE_FILE_PATH.target.exists()
+        assert not FILE_PATH_DEPLOY.target.exists()
 
 
 @pytest.fixture
 def target_file():
-    yield from fixture_file_for_test(RESOURCE_FILE_PATH)
+    """This fixture prepares resource file."""
+    class Deployer(FixtureFileDeployerForTest):
+        """This class deploys resource file into target file path."""
+        FILE_PATH = FILE_PATH_DEPLOY
+    Deployer.set_up()
+    yield
+    Deployer.do_cleanups()
 
 
 @pytest.fixture
 def target_file_empty():
-    yield from file_path_empty_for_test(FILE_PATH)
+    """This fixture prepares target file path empty."""
+    class Vacator(TargetFilePathVacatorForTest):
+        """This class vacates resource file into target file path."""
+        FILE_PATH = FILE_PATH_VACATE
+    Vacator.set_up()
+    yield
+    Vacator.do_cleanups()
 
 
 class TestConfigHandlerUnittestBeforeAfter:
+    """Tests for before / after states of ConfigHandler implemented by unittest."""
     # pylint: disable=unused-argument
     def test_case_when_target_exist(self, target_file):
         """
@@ -34,22 +48,22 @@ class TestConfigHandlerUnittestBeforeAfter:
         Target file should not exist between set up and do cleanups.
         Target file should be test resource after do cleanups.
         """
-        assert RESOURCE_FILE_PATH.target.read_text() == CONTENT_IN_TEST_RESOURCE_FILE
+        assert FILE_PATH_DEPLOY.target.read_text() == CONTENT_IN_TEST_RESOURCE_FILE
         self._set_up_by_unittest()
-        assert not RESOURCE_FILE_PATH.target.exists()
+        assert not FILE_PATH_DEPLOY.target.exists()
         self._do_cleanups_by_unittest()
-        assert RESOURCE_FILE_PATH.target.read_text() == CONTENT_IN_TEST_RESOURCE_FILE
+        assert FILE_PATH_DEPLOY.target.read_text() == CONTENT_IN_TEST_RESOURCE_FILE
 
     # pylint: disable=unused-argument
     def test_case_when_target_not_exist(self, target_file_empty):
         """
         Target file should not exist anytime.
         """
-        assert not FILE_PATH.target.exists()
+        assert not FILE_PATH_VACATE.target.exists()
         self._set_up_by_unittest()
-        assert not FILE_PATH.target.exists()
+        assert not FILE_PATH_VACATE.target.exists()
         self._do_cleanups_by_unittest()
-        assert not FILE_PATH.target.exists()
+        assert not FILE_PATH_VACATE.target.exists()
 
     @staticmethod
     def _set_up_by_unittest():
@@ -65,4 +79,4 @@ class TestAdvancedConfigHandlerUnittest(AdvancedConfigurableTestCase):
     @staticmethod
     def test_advanced():
         """Config file for test should be loaded."""
-        assert RESOURCE_FILE_PATH.target.read_text() == CONTENT_IN_PROJECT_TEST_RESOURCE_FILE_FOR_ADVANCED
+        assert FILE_PATH_DEPLOY.target.read_text() == CONTENT_IN_PROJECT_TEST_RESOURCE_FILE_FOR_ADVANCED

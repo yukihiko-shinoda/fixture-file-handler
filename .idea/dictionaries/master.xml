@@ -2,11 +2,22 @@
   <dictionary name="master">
     <words>
       <w>deployer</w>
+      <w>fixturefilehandler</w>
+      <w>mypy</w>
+      <w>noqa</w>
+      <w>pathlib</w>
+      <w>pylint</w>
+      <w>pypi</w>
       <w>pytest</w>
       <w>pytester</w>
+      <w>shinoda</w>
       <w>testdir</w>
+      <w>testlibraries</w>
       <w>testresources</w>
+      <w>testscenarios</w>
       <w>vacator</w>
+      <w>yourproduct</w>
+      <w>yukihiko</w>
     </words>
   </dictionary>
 </component>

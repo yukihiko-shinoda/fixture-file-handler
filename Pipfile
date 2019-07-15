@@ -5,12 +5,12 @@ name = "pypi"
 
 [dev-packages]
 flake8 = "*"
+mypy = "*"
 pylint = "*"
 pytest = "*"
 pytest-cov = "*"
 radon = "*"
 twine = "*"
-unittest2 = "*"
 
 [requires]
 python_version = "3.7"

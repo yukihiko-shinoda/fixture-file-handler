@@ -1,6 +1,6 @@
 from pathlib import Path
 
-import unittest2 as unittest
+import unittest
 
 from fixturefilehandler import ResourceFileDeployer
 from fixturefilehandler.file_paths import RelativeDeployFilePath

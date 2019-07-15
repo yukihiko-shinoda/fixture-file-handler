@@ -1,5 +1,5 @@
 from pathlib import Path
-import unittest2 as unittest
+import unittest
 
 from fixturefilehandler.factories import VacatorFactory
 from fixturefilehandler.file_paths import RelativeVacateFilePath
