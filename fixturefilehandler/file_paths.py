@@ -1,7 +1,6 @@
 """This module implements file path aggregates."""
 import os
 from abc import abstractmethod
-from dataclasses import dataclass
 from pathlib import Path
 
 
@@ -78,17 +77,23 @@ class RelativeDeployFilePath(SimpleDeployFilePath, RelativeVacateFilePath):
         return self._base / self._resource
 
 
-@dataclass
 class YamlConfigFilePathBuilder(DeployFilePathInterface):
     """
     This class builds file path for config file.
     Default value is maybe suitable for standard directory structure of python project.
     """
-    path_target_directory: Path = Path(os.getcwd())
-    path_test_directory: Path = Path('tests')
-    file_target: Path = Path('config.yml')
-    file_backup: Path = Path('config.yml.bak')
-    file_resource: Path = Path('config.yml.dist')
+    # pylint: disable=too-many-arguments
+    def __init__(self,
+                 path_target_directory: Path = Path(os.getcwd()),
+                 path_test_directory: Path = Path('tests'),
+                 file_target: Path = Path('config.yml'),
+                 file_backup: Path = Path('config.yml.bak'),
+                 file_resource: Path = Path('config.yml.dist')):
+        self.path_target_directory = path_target_directory
+        self.path_test_directory = path_test_directory
+        self.file_target = file_target
+        self.file_backup = file_backup
+        self.file_resource = file_resource
 
     @property
     def target(self) -> Path:

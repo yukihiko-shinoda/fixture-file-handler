@@ -7,11 +7,11 @@ This project helps you to vacate specific file path or deploy resource file into
 The most popular setup / teardown tasks about file system on unit testing is
 almost 2 kinds.
 
-1. vacate specific file path for testing file export function 
-2. deploy fixture file into specific file path for testing file import function
+1. vacate specific file path for testing file export function
+2. deploy fixture file / directory into specific file path for testing file import /export function
 
-Then we have to think about how to back up existing file between unit testing
-because maybe developer wants to keep those handwritten file for development.
+Then we have to think about how to back up existing file / directory between unit testing
+because maybe developer wants to keep those handwritten files for development.
 
 `Fixture File Handler` is framework to realize simply implement
 the vacate and deploy actions while keeping the existing files.
@@ -21,15 +21,15 @@ Of course, even if there is no file in the target path, it works fine.
 
 ### target
 
-The target file path to vacate or deploy file for unit testing.
+The target file path to vacate or deploy file / directory for unit testing.
 
 ### backup
 
-The file path to back up existing file on target file path between unit testing.
+The file path to back up existing file / directory on target file path between unit testing.
 
 ### resource
 
-The file you want to deploy and let product code read in unit testing.
+The file / directory you want to deploy and let product code read / write in unit testing.
 It may test resource file or template file like `*.dist` file.
 
 ## Basic behavior
@@ -38,45 +38,45 @@ It may test resource file or template file like `*.dist` file.
 
 target path|backup path
 ---|---
-existing file|&nbsp;
+existing file /dir|&nbsp;
 
 ↓ setup
 
 target path|backup path
 ---|---
-&nbsp;|existing file
+&nbsp;|existing file / dir
 
 ↓ teardown
 
 target path|backup path
 ---|---
-existing file|&nbsp;
+existing file / dir|&nbsp;
 
 
 ### Deployer
 
 target path|backup path|resource path
 ---|---|---
-existing file|&nbsp;|resource file
+existing file / dir|&nbsp;|resource file / dir
 
 ↓ setup
 
 target path|backup path|resource path
 ---|---|---
-resource file|existing file|resource file
+resource file / dir|existing file /dir|resource file / dir
 
 ↓ teardown
 
 target path|backup path|resource path
 ---|---|---
-existing file|&nbsp;|resource file
+existing file / dir|&nbsp;|resource file / dir
 
 
 ### Common behavior
 
-If file or directory already exists on backup path,
+If file / directory already exists on backup path,
 setup raise `BackupAlreadyExistError`
-because it's unexpected situation and developer may want to resque its backup file.
+because it's unexpected situation and developer may want to resque those backup files.
 
 ## Quickstart
 

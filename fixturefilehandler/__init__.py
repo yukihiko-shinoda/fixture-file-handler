@@ -18,7 +18,7 @@ class FixtureFileHandler:
         """
         if file_path.backup.exists():
             raise BackupAlreadyExistError()
-        if file_path.target.is_file():
+        if file_path.target.is_file() or file_path.target.is_dir():
             os.replace(str(file_path.target), str(file_path.backup))
 
     @staticmethod
@@ -28,6 +28,9 @@ class FixtureFileHandler:
         :return: None
         """
         FixtureFileHandler.vacate_target_if_exist(file_path)
+        if file_path.resource.is_dir():
+            shutil.copytree(str(file_path.resource), str(file_path.target))
+            return
         shutil.copy(str(file_path.resource), str(file_path.target))
 
     @staticmethod
@@ -36,7 +39,9 @@ class FixtureFileHandler:
         This method restore backup file by if exist.
         :return: None
         """
-        if file_path.backup.is_file():
+        if file_path.backup.is_file() or file_path.backup.is_dir():
+            if file_path.target.is_dir():
+                shutil.rmtree(str(file_path.target))
             os.replace(str(file_path.backup), str(file_path.target))
 
 
