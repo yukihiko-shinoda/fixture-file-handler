@@ -1,5 +1,11 @@
 # Fixture File Handler
 
+[![Test](https://github.com/yukihiko-shinoda/fixture-file-handler/workflows/Test/badge.svg)](https://github.com/yukihiko-shinoda/fixture-file-handler/actions?query=workflow%3ATest)
+[![codecov](https://codecov.io/gh/yukihiko-shinoda/fixture-file-handler/branch/master/graph/badge.svg)](https://codecov.io/gh/yukihiko-shinoda/fixture-file-handler)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/fixturefilehandler)](https://pypi.org/project/fixturefilehandler/)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/fixturefilehandler)](https://pypi.org/project/fixturefilehandler/)
+[![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fyukihiko-shinoda%2Ffixture-file-handler)](http://twitter.com/share?text=Fixture%20File%20Handler&url=https://pypi.org/project/fixturefilehandler/&hashtags=python)
+
 This project helps you to vacate specific file path or deploy resource file into specific file path when unit testing.
 
 ## Context
