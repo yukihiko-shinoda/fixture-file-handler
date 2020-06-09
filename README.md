@@ -58,7 +58,6 @@ target path|backup path
 ---|---
 existing file / dir|&nbsp;
 
-
 ### Deployer
 
 target path|backup path|resource path
@@ -77,7 +76,6 @@ target path|backup path|resource path
 ---|---|---
 existing file / dir|&nbsp;|resource file / dir
 
-
 ### Common behavior
 
 If file / directory already exists on backup path,
@@ -86,10 +84,13 @@ because it's unexpected situation and developer may want to resque those backup 
 
 ## Quickstart
 
-#### 1. Install
-`pip install fixturefilehandler`
+### 1. Install
 
-#### 2-1. Case when unittest: implement setUp() and doCleanups()
+```console
+pip install fixturefilehandler
+```
+
+### 2-1. Case when unittest: implement setUp() and doCleanups()
 
 ```python
 from pathlib import Path
@@ -115,7 +116,7 @@ class ConfigurableTestCase(unittest.TestCase):
         VACATOR.teardown()
 ```
 
-#### 2-2. Case when pytest: implement fixture
+### 2-2. Case when pytest: implement fixture
 
 ```python
 from pathlib import Path
@@ -169,9 +170,13 @@ Each path is relative based on base path.
 This instance holds path to target, backup, resource, and base.
 Each path is relative based on base path.
 
+<!-- markdownlint-disable no-trailing-punctuation -->
 ## How do I...
+<!-- markdownlint-enable no-trailing-punctuation -->
 
+<!-- markdownlint-disable no-trailing-punctuation -->
 ### Use different paths for each test?
+<!-- markdownlint-enable no-trailing-punctuation -->
 
 `setup()` and `teardown()` also accept file_paths argument.
 
