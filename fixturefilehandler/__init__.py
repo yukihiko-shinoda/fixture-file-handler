@@ -7,6 +7,8 @@ from typing import Generic, TypeVar
 from fixturefilehandler.exceptions import BackupAlreadyExistError
 from fixturefilehandler.file_paths import DeployFilePathInterface, VacateFilePathInterface
 
+__version__ = "1.2.0"
+
 
 class FixtureFileHandler:
     """This class implements basic static methods."""
