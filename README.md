@@ -4,6 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/063cfb039d7d9a2ff69d/maintainability)](https://codeclimate.com/github/yukihiko-shinoda/fixture-file-handler/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/063cfb039d7d9a2ff69d/test_coverage)](https://codeclimate.com/github/yukihiko-shinoda/fixture-file-handler/test_coverage)
 [![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/yukihiko-shinoda/fixture-file-handler)](https://codeclimate.com/github/yukihiko-shinoda/fixture-file-handler)
+[![Updates](https://pyup.io/repos/github/yukihiko-shinoda/fixture-file-handler/shield.svg)](https://pyup.io/repos/github/yukihiko-shinoda/fixture-file-handler/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/fixturefilehandler)](https://pypi.org/project/fixturefilehandler/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/fixturefilehandler)](https://pypi.org/project/fixturefilehandler/)
 [![Twitter URL](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fyukihiko-shinoda%2Ffixture-file-handler)](http://twitter.com/share?text=Fixture%20File%20Handler&url=https://pypi.org/project/fixturefilehandler/&hashtags=python)
