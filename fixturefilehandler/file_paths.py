@@ -6,6 +6,7 @@ from pathlib import Path
 
 class VacateFilePathInterface:
     """This interface defines properties"""
+
     @property
     @abstractmethod
     def target(self) -> Path:
@@ -19,6 +20,7 @@ class VacateFilePathInterface:
 
 class DeployFilePathInterface(VacateFilePathInterface):
     """This interface defines properties"""
+
     @property
     @abstractmethod
     def resource(self) -> Path:
@@ -27,6 +29,7 @@ class DeployFilePathInterface(VacateFilePathInterface):
 
 class SimpleVacateFilePath(VacateFilePathInterface):
     """This class implements simple paths for vacate."""
+
     def __init__(self, target: Path, backup: Path):
         self._target = target
         self._backup = backup
@@ -42,6 +45,7 @@ class SimpleVacateFilePath(VacateFilePathInterface):
 
 class SimpleDeployFilePath(SimpleVacateFilePath, DeployFilePathInterface):
     """This class implements simple paths for deploy."""
+
     def __init__(self, target: Path, backup: Path, resource: Path):
         super().__init__(target, backup)
         self._resource = resource
@@ -53,6 +57,7 @@ class SimpleDeployFilePath(SimpleVacateFilePath, DeployFilePathInterface):
 
 class RelativeVacateFilePath(SimpleVacateFilePath):
     """This class implements relative paths for vacate."""
+
     def __init__(self, target: Path, backup: Path, base: Path = Path(os.getcwd())):
         super().__init__(target, backup)
         self._base = base
@@ -68,6 +73,7 @@ class RelativeVacateFilePath(SimpleVacateFilePath):
 
 class RelativeDeployFilePath(SimpleDeployFilePath, RelativeVacateFilePath):
     """This class implements relative paths for deploy."""
+
     def __init__(self, target: Path, backup: Path, resource: Path, base: Path = Path(os.getcwd())):
         super().__init__(target, backup, resource)
         self._base = base
@@ -82,13 +88,16 @@ class YamlConfigFilePathBuilder(DeployFilePathInterface):
     This class builds file path for config file.
     Default value is maybe suitable for standard directory structure of python project.
     """
+
     # pylint: disable=too-many-arguments
-    def __init__(self,
-                 path_target_directory: Path = Path(os.getcwd()),
-                 path_test_directory: Path = Path('tests'),
-                 file_target: Path = Path('config.yml'),
-                 file_backup: Path = Path('config.yml.bak'),
-                 file_resource: Path = Path('config.yml.dist')):
+    def __init__(
+        self,
+        path_target_directory: Path = Path(os.getcwd()),
+        path_test_directory: Path = Path("tests"),
+        file_target: Path = Path("config.yml"),
+        file_backup: Path = Path("config.yml.bak"),
+        file_resource: Path = Path("config.yml.dist"),
+    ):
         self.path_target_directory = path_target_directory
         self.path_test_directory = path_test_directory
         self.file_target = file_target

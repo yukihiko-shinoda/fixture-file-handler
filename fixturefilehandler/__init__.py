@@ -2,7 +2,7 @@
 import os
 import shutil
 from abc import abstractmethod
-from typing import TypeVar, Generic
+from typing import Generic, TypeVar
 
 from fixturefilehandler.exceptions import BackupAlreadyExistError
 from fixturefilehandler.file_paths import DeployFilePathInterface, VacateFilePathInterface
@@ -10,6 +10,7 @@ from fixturefilehandler.file_paths import DeployFilePathInterface, VacateFilePat
 
 class FixtureFileHandler:
     """This class implements basic static methods."""
+
     @staticmethod
     def vacate_target_if_exist(file_path: VacateFilePathInterface) -> None:
         """
@@ -45,12 +46,14 @@ class FixtureFileHandler:
             os.replace(str(file_path.backup), str(file_path.target))
 
 
-TVacateFilePathInterface = TypeVar('TVacateFilePathInterface', bound=VacateFilePathInterface)
+TVacateFilePathInterface = TypeVar("TVacateFilePathInterface", bound=VacateFilePathInterface)
 
 
 class HandlerInterface(Generic[TVacateFilePathInterface]):
     """This class implements interface of handler."""
+
     FILE_PATH: TVacateFilePathInterface
+
     @classmethod
     @abstractmethod
     def setup(cls, file_path: TVacateFilePathInterface = None) -> None:
@@ -66,7 +69,9 @@ class HandlerInterface(Generic[TVacateFilePathInterface]):
 
 class TargetFilePathVacator(HandlerInterface):
     """This class Vacate target file path."""
+
     FILE_PATH: VacateFilePathInterface
+
     @classmethod
     def setup(cls, file_path: VacateFilePathInterface = None) -> None:
         """This function vacate target if exist."""
@@ -77,7 +82,9 @@ class TargetFilePathVacator(HandlerInterface):
 
 class ResourceFileDeployer(HandlerInterface):
     """This class Deploy resource file into target file path."""
+
     FILE_PATH: DeployFilePathInterface
+
     @classmethod
     def setup(cls, file_path: DeployFilePathInterface = None) -> None:
         """

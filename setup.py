@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 """This module implements build settings."""
-from setuptools import setup
-from setuptools import find_packages
+from setuptools import find_packages, setup  # type: ignore
 
 
 def main():

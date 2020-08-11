@@ -5,6 +5,7 @@ from pathlib import Path
 
 class VacateFilePathBuilderForTest:
     """This class builds file path for vacate specific target file path."""
+
     def __init__(self, target: Path, backup: Path, backup_for_test: Path, base: Path = Path(os.getcwd())):
         self._target: Path = target
         self._backup: Path = backup
@@ -29,15 +30,16 @@ class VacateFilePathBuilderForTest:
 
 class DeployFilePathBuilderForTest(VacateFilePathBuilderForTest):
     """This class builds file path for deploy specific resource file into specific target file path."""
+
     # pylint: disable=too-many-arguments
     def __init__(
-            self,
-            target: Path,
-            backup: Path,
-            backup_for_test: Path,
-            resource: Path,
-            base: Path = Path(os.getcwd()),
-            base_resource: Path = Path(os.getcwd()) / 'tests'
+        self,
+        target: Path,
+        backup: Path,
+        backup_for_test: Path,
+        resource: Path,
+        base: Path = Path(os.getcwd()),
+        base_resource: Path = Path(os.getcwd()) / "tests",
     ):
         super().__init__(target, backup, backup_for_test, base)
         self._resource = resource

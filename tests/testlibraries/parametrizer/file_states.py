@@ -2,17 +2,22 @@
 from abc import abstractmethod
 from dataclasses import dataclass
 from enum import Enum
-from typing import Type, Generic
+from typing import Generic, Type
 
-from fixturefilehandler import VacateFilePathInterface, DeployFilePathInterface
+from fixturefilehandler import DeployFilePathInterface, VacateFilePathInterface
 from tests.testlibraries.parametrizer import TypeVarVacateFilePathInterface
-from tests.testlibraries.parametrizer.file_path_state_handlers import FilePathStateHandler, \
-    NoExistHandler, ContentExistingHandler, ContentBackupHandler, \
-    ContentResourceHandler
+from tests.testlibraries.parametrizer.file_path_state_handlers import (
+    ContentBackupHandler,
+    ContentExistingHandler,
+    ContentResourceHandler,
+    FilePathStateHandler,
+    NoExistHandler,
+)
 
 
 class FilePathState(Enum):
     """This class implements kinds of file state."""
+
     NOT_EXIST: Type[FilePathStateHandler] = NoExistHandler
     EXISTING: Type[FilePathStateHandler] = ContentExistingHandler
     BACKUP: Type[FilePathStateHandler] = ContentBackupHandler
@@ -41,9 +46,11 @@ class FilePathState(Enum):
 
 class MultipleFilePathState(Generic[TypeVarVacateFilePathInterface]):
     """This class implements abstract multiple file state."""
+
     @abstractmethod
     def assert_file_state(self, file_path: TypeVarVacateFilePathInterface):
         """This method checks file state."""
+
     @abstractmethod
     def assert_directory_state(self, file_path: TypeVarVacateFilePathInterface):
         """This method checks file state."""
@@ -52,6 +59,7 @@ class MultipleFilePathState(Generic[TypeVarVacateFilePathInterface]):
 @dataclass
 class TwoFilePathState(MultipleFilePathState):
     """This class implements states of two files."""
+
     expect_target: FilePathState
     expect_backup: FilePathState
 
@@ -67,6 +75,7 @@ class TwoFilePathState(MultipleFilePathState):
 @dataclass
 class ThreeFilePathState(MultipleFilePathState):
     """This class implements states of three files."""
+
     expect_target: FilePathState
     expect_backup: FilePathState
     expect_resource: FilePathState

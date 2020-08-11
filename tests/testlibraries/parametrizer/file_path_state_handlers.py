@@ -3,24 +3,29 @@ from abc import abstractmethod
 from pathlib import Path
 
 from fixturefilehandler.file_paths import RelativeDeployFilePath
-from tests.testlibraries.parametrizer.checkers import NotExistChecker, ContentChecker
+from tests.testlibraries.parametrizer.checkers import ContentChecker, NotExistChecker
 
 
 class FilePathStateHandler:
     """This class implements abstract file state dependency."""
-    FILE_NAME_IN_DIRECTORY: Path = Path('file.txt')
+
+    FILE_NAME_IN_DIRECTORY: Path = Path("file.txt")
+
     @classmethod
     @abstractmethod
     def create_checker(cls, path: Path):
         """This method returns checker."""
+
     @classmethod
     @abstractmethod
     def create_file(cls, file_path: RelativeDeployFilePath):
         """This method returns checker."""
+
     @classmethod
     @abstractmethod
     def create_directory(cls, file_path: RelativeDeployFilePath):
         """This method returns checker."""
+
     @classmethod
     def assert_file_state(cls, path: Path):
         """This method checks file state."""
@@ -36,6 +41,7 @@ class FilePathStateHandler:
 
 class NoExistHandler(FilePathStateHandler):
     """This class implements abstract file state dependency on case when not exist."""
+
     @classmethod
     def create_checker(cls, path: Path):
         return NotExistChecker(path)
@@ -57,7 +63,9 @@ class NoExistHandler(FilePathStateHandler):
 
 class ContentExistingHandler(FilePathStateHandler):
     """This class implements abstract file state dependency on case when existing content."""
-    CONTENT = 'Content in existing file'
+
+    CONTENT = "Content in existing file"
+
     @classmethod
     def create_checker(cls, path: Path):
         return ContentChecker(path, cls.CONTENT)
@@ -74,7 +82,9 @@ class ContentExistingHandler(FilePathStateHandler):
 
 class ContentBackupHandler(FilePathStateHandler):
     """This class implements abstract file state dependency on case when backup content."""
-    CONTENT = 'Content in backup file'
+
+    CONTENT = "Content in backup file"
+
     @classmethod
     def create_checker(cls, path: Path):
         return ContentChecker(path, cls.CONTENT)
@@ -91,7 +101,9 @@ class ContentBackupHandler(FilePathStateHandler):
 
 class ContentResourceHandler(FilePathStateHandler):
     """This class implements abstract file state dependency on case when resource content."""
-    CONTENT = 'Content in resource file'
+
+    CONTENT = "Content in resource file"
+
     @classmethod
     def create_checker(cls, path: Path):
         return ContentChecker(path, cls.CONTENT)

@@ -2,14 +2,17 @@
 import os
 import shutil
 from abc import abstractmethod
-from typing import TypeVar, Generic
+from typing import Generic, TypeVar
 
-from tests.testlibraries.fixturefilehandlerfortest.file_paths_for_test import VacateFilePathBuilderForTest
-from tests.testlibraries.fixturefilehandlerfortest.file_paths_for_test import DeployFilePathBuilderForTest
+from tests.testlibraries.fixturefilehandlerfortest.file_paths_for_test import (
+    DeployFilePathBuilderForTest,
+    VacateFilePathBuilderForTest,
+)
 
 
 class FixtureFileHandlerForTest:
     """This class implements basic static methods."""
+
     @staticmethod
     def vacate_target_if_exist_and_remove_backup_if_exist(file_path) -> None:
         """
@@ -44,11 +47,12 @@ class FixtureFileHandlerForTest:
         os.replace(str(file_path.backup_for_test), str(file_path.target))
 
 
-TVacateFilePathInterfaceForTest = TypeVar('TVacateFilePathInterfaceForTest', bound=VacateFilePathBuilderForTest)
+TVacateFilePathInterfaceForTest = TypeVar("TVacateFilePathInterfaceForTest", bound=VacateFilePathBuilderForTest)
 
 
 class HandlerInterfaceForTest(Generic[TVacateFilePathInterfaceForTest]):
     """This class implements interface of handler."""
+
     FILE_PATH: TVacateFilePathInterfaceForTest
 
     @classmethod
@@ -64,6 +68,7 @@ class HandlerInterfaceForTest(Generic[TVacateFilePathInterfaceForTest]):
 
 class TargetFilePathVacatorForTest(HandlerInterfaceForTest):
     """This class vacates target file path."""
+
     FILE_PATH: VacateFilePathBuilderForTest
 
     @classmethod
@@ -73,7 +78,9 @@ class TargetFilePathVacatorForTest(HandlerInterfaceForTest):
 
 class FixtureFileDeployerForTest(HandlerInterfaceForTest):
     """This class deploys resource file into target file path."""
+
     FILE_PATH: DeployFilePathBuilderForTest
+
     @classmethod
     def set_up(cls) -> None:
         FixtureFileHandlerForTest.deploy_resource(cls.FILE_PATH)
