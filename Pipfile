@@ -6,8 +6,11 @@ verify_ssl = true
 [dev-packages]
 # Hotfix for Pipenv's Bug @see https://github.com/pypa/pipenv/issues/4101
 colorama = "*"
+coverage = "*"
 fixturefilehandler = {editable = true, path = "."}
 flake8 = "*"
+invoke = "*"
+isort = "*"
 mypy = "*"
 pipenv-setup = "*"
 pylint = "*"
@@ -15,15 +18,5 @@ pytest = "*"
 pytest-cov = "*"
 radon = "*"
 twine = "*"
-
-[scripts]
-test = "pytest tests"
-coverage = "pytest --verbose --cov=fixturefilehandler --cov-report=term-missing tests"
-coverage_xml = "pytest --cov-report xml --cov=fixturefilehandler tests"
-flake8 = "flake8 --max-line-length=120 --statistics --show-source --radon-show-closures ."
-cc = "radon cc --show-complexity --min B ."
-mi = "radon mi --show ."
-setup_sync = "pipenv-setup sync --pipfile"
-check_setup = "pipenv-setup check --strict"
-clear = "rm -rf fixturefilehandler.egg-info/* build/* dist/*"
-build = "python setup.py sdist bdist_wheel"
+wheel = "*"
+xenon = "*"
