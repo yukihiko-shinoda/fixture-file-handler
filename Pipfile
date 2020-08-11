@@ -4,6 +4,9 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+# Hotfix for Pipenv's Bug @see https://github.com/pypa/pipenv/issues/4101
+colorama = "*"
+fixturefilehandler = {editable = true, path = "."}
 flake8 = "*"
 mypy = "*"
 pipenv-setup = "*"
@@ -12,8 +15,6 @@ pytest = "*"
 pytest-cov = "*"
 radon = "*"
 twine = "*"
-# Hotfix for Pipenv's Bug @see https://github.com/pypa/pipenv/issues/4101
-colorama = "*"
 
 [scripts]
 test = "pytest tests"
