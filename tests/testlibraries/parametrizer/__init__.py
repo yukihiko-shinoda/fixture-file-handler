@@ -3,4 +3,4 @@ from typing import TypeVar
 
 from fixturefilehandler import VacateFilePathInterface
 
-TypeVarVacateFilePathInterface = TypeVar('TypeVarVacateFilePathInterface', bound=VacateFilePathInterface)
+TypeVarVacateFilePathInterface = TypeVar("TypeVarVacateFilePathInterface", bound=VacateFilePathInterface)

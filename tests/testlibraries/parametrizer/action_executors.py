@@ -5,29 +5,42 @@ from typing import Generic, Type
 
 import pytest
 
-from fixturefilehandler import VacateFilePathInterface, FixtureFileHandler, BackupAlreadyExistError, \
-    DeployFilePathInterface, TargetFilePathVacator, ResourceFileDeployer
+from fixturefilehandler import (
+    BackupAlreadyExistError,
+    DeployFilePathInterface,
+    FixtureFileHandler,
+    ResourceFileDeployer,
+    TargetFilePathVacator,
+    VacateFilePathInterface,
+)
 from tests.testlibraries.parametrizer import TypeVarVacateFilePathInterface
 
 
 def create_vacator_class(file_path):
     """This function returns vacator class."""
+
     class Vacator(TargetFilePathVacator):
         """This class implements concrete file path."""
+
         FILE_PATH = file_path
+
     return Vacator
 
 
 def create_deployer_class(file_path):
     """This function returns deployer class."""
+
     class Deployer(ResourceFileDeployer):
         """This class implements concrete file path."""
+
         FILE_PATH = file_path
+
     return Deployer
 
 
 class ActionExecutor(Generic[TypeVarVacateFilePathInterface]):
     """This class implements abstract action executor."""
+
     @staticmethod
     @abstractmethod
     def execute(file_path: TypeVarVacateFilePathInterface):
@@ -36,6 +49,7 @@ class ActionExecutor(Generic[TypeVarVacateFilePathInterface]):
 
 class VacateTargetIfExistExecutor(ActionExecutor[VacateFilePathInterface]):
     """This class implements action executor for vacate_target_if_exist()."""
+
     @staticmethod
     def execute(file_path: VacateFilePathInterface):
         FixtureFileHandler.vacate_target_if_exist(file_path)
@@ -43,6 +57,7 @@ class VacateTargetIfExistExecutor(ActionExecutor[VacateFilePathInterface]):
 
 class VacateTargetIfExistAssertErrorExecutor(ActionExecutor[VacateFilePathInterface]):
     """This class implements action executor for vacate_target_if_exist() with argument."""
+
     @staticmethod
     def execute(file_path: VacateFilePathInterface):
         with pytest.raises(BackupAlreadyExistError):
@@ -51,6 +66,7 @@ class VacateTargetIfExistAssertErrorExecutor(ActionExecutor[VacateFilePathInterf
 
 class DeployResourceExecutor(ActionExecutor[DeployFilePathInterface]):
     """This class implements action executor for deploy_resource()."""
+
     @staticmethod
     def execute(file_path: DeployFilePathInterface):
         FixtureFileHandler.deploy_resource(file_path)
@@ -58,6 +74,7 @@ class DeployResourceExecutor(ActionExecutor[DeployFilePathInterface]):
 
 class DeployResourceAssertErrorExecutor(ActionExecutor[DeployFilePathInterface]):
     """This class implements action executor for deploy_resource() with argument and expect error."""
+
     @staticmethod
     def execute(file_path: DeployFilePathInterface):
         with pytest.raises(FileNotFoundError):
@@ -66,6 +83,7 @@ class DeployResourceAssertErrorExecutor(ActionExecutor[DeployFilePathInterface])
 
 class RestoreBackupIfExistExecutor(ActionExecutor[VacateFilePathInterface]):
     """This class implements action executor for restore_backup_if_exist() with argument."""
+
     @staticmethod
     def execute(file_path: VacateFilePathInterface):
         FixtureFileHandler.restore_backup_if_exist(file_path)
@@ -73,6 +91,7 @@ class RestoreBackupIfExistExecutor(ActionExecutor[VacateFilePathInterface]):
 
 class VacatorSetupExecutor(ActionExecutor[VacateFilePathInterface]):
     """This class implements action executor for Vacator.setup()."""
+
     @staticmethod
     def execute(file_path: VacateFilePathInterface):
         create_vacator_class(file_path).setup()
@@ -80,6 +99,7 @@ class VacatorSetupExecutor(ActionExecutor[VacateFilePathInterface]):
 
 class VacatorSetupWithArgumentExecutor(ActionExecutor[VacateFilePathInterface]):
     """This class implements action executor for Vacator.setup() with argument."""
+
     @staticmethod
     def execute(file_path: VacateFilePathInterface):
         TargetFilePathVacator.setup(file_path)
@@ -87,6 +107,7 @@ class VacatorSetupWithArgumentExecutor(ActionExecutor[VacateFilePathInterface]):
 
 class VacatorTeardownExecutor(ActionExecutor[VacateFilePathInterface]):
     """This class implements action executor for Vacator.teardown()."""
+
     @staticmethod
     def execute(file_path: VacateFilePathInterface):
         create_vacator_class(file_path).teardown()
@@ -94,6 +115,7 @@ class VacatorTeardownExecutor(ActionExecutor[VacateFilePathInterface]):
 
 class VacatorTeardownWithArgumentExecutor(ActionExecutor[VacateFilePathInterface]):
     """This class implements action executor for Vacator.teardown() with argument."""
+
     @staticmethod
     def execute(file_path: VacateFilePathInterface):
         TargetFilePathVacator.teardown(file_path)
@@ -101,6 +123,7 @@ class VacatorTeardownWithArgumentExecutor(ActionExecutor[VacateFilePathInterface
 
 class DeployerSetupExecutor(ActionExecutor[DeployFilePathInterface]):
     """This class implements action executor for Deployer.setup()."""
+
     @staticmethod
     def execute(file_path: DeployFilePathInterface):
         create_deployer_class(file_path).setup()
@@ -108,6 +131,7 @@ class DeployerSetupExecutor(ActionExecutor[DeployFilePathInterface]):
 
 class DeployerSetupWithArgumentExecutor(ActionExecutor[DeployFilePathInterface]):
     """This class implements action executor for Deployer.setup() with argument."""
+
     @staticmethod
     def execute(file_path: DeployFilePathInterface):
         ResourceFileDeployer.setup(file_path)
@@ -115,6 +139,7 @@ class DeployerSetupWithArgumentExecutor(ActionExecutor[DeployFilePathInterface])
 
 class DeployerTeardownExecutor(ActionExecutor[DeployFilePathInterface]):
     """This class implements action executor for Deployer.teardown()."""
+
     @staticmethod
     def execute(file_path: DeployFilePathInterface):
         create_deployer_class(file_path).teardown()
@@ -122,6 +147,7 @@ class DeployerTeardownExecutor(ActionExecutor[DeployFilePathInterface]):
 
 class DeployerTeardownWithArgumentExecutor(ActionExecutor[VacateFilePathInterface]):
     """This class implements action executor for Deployer.teardown() with argument."""
+
     @staticmethod
     def execute(file_path: VacateFilePathInterface):
         ResourceFileDeployer.teardown(file_path)
@@ -129,6 +155,7 @@ class DeployerTeardownWithArgumentExecutor(ActionExecutor[VacateFilePathInterfac
 
 class Action(Enum):
     """This class implements kinds of action executor."""
+
     VACATE_TARGET_IF_EXIST = VacateTargetIfExistExecutor
     VACATE_TARGET_IF_EXIST_ASSERT_ERROR = VacateTargetIfExistAssertErrorExecutor
     DEPLOY_RESOURCE = DeployResourceExecutor

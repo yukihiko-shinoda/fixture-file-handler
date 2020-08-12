@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 """This module implements build settings."""
-from setuptools import setup
-from setuptools import find_packages
+from setuptools import find_packages, setup  # type: ignore
 
 
 def main():
@@ -25,6 +24,7 @@ def main():
         python_requires=">3.6.0",
         install_requires=[],
         dependency_links=[],
+        setup_requires=["pytest-runner"],
         url="https://github.com/yukihiko-shinoda/fixture-file-handler",
         keywords="fixture file vacate deploy unittest pytest testing",
         classifiers=[

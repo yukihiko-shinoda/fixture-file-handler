@@ -1,19 +1,20 @@
 """This module implements factory for file path with file."""
 from abc import abstractmethod
 from pathlib import Path
-from typing import TypeVar, Generic, Type
+from typing import Generic, Type, TypeVar
 
-from fixturefilehandler.file_paths import RelativeVacateFilePath, RelativeDeployFilePath
-from tests.testlibraries.parametrizer.file_states import TwoFilePathState, ThreeFilePathState, MultipleFilePathState
+from fixturefilehandler.file_paths import RelativeDeployFilePath, RelativeVacateFilePath
+from tests.testlibraries.parametrizer.file_states import MultipleFilePathState, ThreeFilePathState, TwoFilePathState
 
-PATH_TARGET = Path('test.txt')
-PATH_BACKUP = Path('test.txt.bak')
-PATH_RESOURCE = Path('test.txt.dist')
-TypeVarTwoFilesState = TypeVar('TypeVarTwoFilesState', bound=TwoFilePathState)
+PATH_TARGET = Path("test.txt")
+PATH_BACKUP = Path("test.txt.bak")
+PATH_RESOURCE = Path("test.txt.dist")
+TypeVarTwoFilesState = TypeVar("TypeVarTwoFilesState", bound=TwoFilePathState)
 
 
 class AbstractFilePathWithResourceFactory(Generic[TypeVarTwoFilesState]):
     """This class implements abstract factory."""
+
     @staticmethod
     @abstractmethod
     def create(tmp_path, file_state: TypeVarTwoFilesState):
@@ -22,6 +23,7 @@ class AbstractFilePathWithResourceFactory(Generic[TypeVarTwoFilesState]):
 
 class VacateFilePathWithFileFactory(AbstractFilePathWithResourceFactory):
     """This class implements factory for vacate file path."""
+
     @staticmethod
     def create(tmp_path, file_state: TwoFilePathState):
         file_path = RelativeVacateFilePath(PATH_TARGET, PATH_BACKUP, tmp_path)
@@ -32,6 +34,7 @@ class VacateFilePathWithFileFactory(AbstractFilePathWithResourceFactory):
 
 class DeployFilePathWithFileFactory(AbstractFilePathWithResourceFactory):
     """This class implements factory for deploy file path."""
+
     @staticmethod
     def create(tmp_path, file_state: ThreeFilePathState):
         file_path = RelativeDeployFilePath(PATH_TARGET, PATH_BACKUP, PATH_RESOURCE, tmp_path)
@@ -43,6 +46,7 @@ class DeployFilePathWithFileFactory(AbstractFilePathWithResourceFactory):
 
 class VacateFilePathWithDirectoryFactory(AbstractFilePathWithResourceFactory):
     """This class implements factory for vacate file path."""
+
     @staticmethod
     def create(tmp_path, file_state: TwoFilePathState):
         file_path = RelativeVacateFilePath(PATH_TARGET, PATH_BACKUP, tmp_path)
@@ -53,6 +57,7 @@ class VacateFilePathWithDirectoryFactory(AbstractFilePathWithResourceFactory):
 
 class DeployFilePathWithDirectoryFactory(AbstractFilePathWithResourceFactory):
     """This class implements factory for deploy file path."""
+
     @staticmethod
     def create(tmp_path, file_state: ThreeFilePathState):
         file_path = RelativeDeployFilePath(PATH_TARGET, PATH_BACKUP, PATH_RESOURCE, tmp_path)
@@ -64,6 +69,7 @@ class DeployFilePathWithDirectoryFactory(AbstractFilePathWithResourceFactory):
 
 class FilePathWithFileFactory:
     """This class implements factory for file path and file."""
+
     @classmethod
     def create(cls, tmp_path, multi_file_state):
         """This class creates files and returns file path"""
@@ -81,6 +87,7 @@ class FilePathWithFileFactory:
 
 class FilePathWithDirectoryFactory:
     """This class implements factory for file path and file."""
+
     @classmethod
     def create(cls, tmp_path, multi_file_state):
         """This class creates files and returns file path"""
