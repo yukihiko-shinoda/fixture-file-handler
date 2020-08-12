@@ -38,7 +38,7 @@ def main():
         long_description_content_type="text/markdown",
         packages=find_packages(exclude=("tests*", "yourproduct*")),
         package_data={"fixturefilehandler": ["py.typed"]},
-        python_requires=">3.6.0",
+        python_requires=">=3.7",
         setup_requires=["pytest-runner"],
         url="https://github.com/yukihiko-shinoda/fixture-file-handler",
         version="1.2.0",
