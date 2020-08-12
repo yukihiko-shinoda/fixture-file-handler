@@ -42,8 +42,11 @@ def main():
         package_data={"fixturefilehandler": ["py.typed"]},
         python_requires=">=3.7",
         setup_requires=["pytest-runner"],
+        test_suite="tests",
+        tests_require=["pytest>=3"],
         url="https://github.com/yukihiko-shinoda/fixture-file-handler",
         version="1.2.0",
+        zip_safe=False,
     )
 
 
