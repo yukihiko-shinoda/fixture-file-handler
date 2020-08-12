@@ -12,14 +12,8 @@ from tests.testscenarios import (
     PATH_TEST_RESOURCES_HOME,
     PATH_YOUR_PROJECT_HOME,
 )
-
-# noinspection PyUnresolvedReferences
-# Reason: pytest fixture. pylint: disable=unused-import
-from yourproduct.pytest_context_advanced import fixture_file_advanced  # noqa: F401
-
-# noinspection PyUnresolvedReferences
-# Reason: pytest fixture. pylint: disable=unused-import
-from yourproduct.pytest_context_basic import fixture_file  # noqa: F401
+from yourproduct.pytest_context_advanced import fixture_file_advanced  # noqa: F401 pylint: disable=unused-import
+from yourproduct.pytest_context_basic import fixture_file  # noqa: F401 pylint: disable=unused-import
 
 # pylint: disable=invalid-name
 pytest_plugins = ["pytester"]
