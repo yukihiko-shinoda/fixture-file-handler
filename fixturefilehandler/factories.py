@@ -1,12 +1,14 @@
 """This module implements handler factory"""
 from typing import Type
 
-from fixturefilehandler import (
+from fixturefilehandler.fixture_file_handler import (
     DeployFilePathInterface,
     ResourceFileDeployer,
     TargetFilePathVacator,
     VacateFilePathInterface,
 )
+
+__all__ = ["VacatorFactory", "DeployerFactory"]
 
 
 class VacatorFactory:
