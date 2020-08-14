@@ -78,7 +78,7 @@ Ready to contribute? Here's how to set up `Fixture File Handler` for local devel
    ```console
    pipenv run inv style --check
    pipenv run pytest
-   pipenv install --python 3.5
+   pipenv install --python 3.7
    pipenv run pytest
    ```
 
