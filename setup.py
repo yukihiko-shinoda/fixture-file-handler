@@ -37,11 +37,13 @@ def main():
         include_package_data=True,
         install_requires=[],
         keywords="fixture file vacate deploy unittest pytest testing",
-        name="fixturefilehandler",
         long_description=readme,
         long_description_content_type="text/markdown",
-        packages=find_packages(include=["fixturefilehandler", "fixturefilehandler.*", "tests", "tests.*"]),
-        package_data={"fixturefilehandler": ["py.typed"], "tests": ["*"]},
+        name="fixturefilehandler",
+        packages=find_packages(
+            include=["fixturefilehandler", "fixturefilehandler.*", "tests", "tests.*", "yourproduct", "yourproduct.*"]
+        ),
+        package_data={"fixturefilehandler": ["py.typed"], "tests": ["*"], "yourproduct": ["*"]},
         python_requires=">=3.7",
         test_suite="tests",
         tests_require=["pytest>=3"],
