@@ -1,8 +1,8 @@
 # Fixture File Handler
 
 [![Test](https://github.com/yukihiko-shinoda/fixture-file-handler/workflows/Test/badge.svg)](https://github.com/yukihiko-shinoda/fixture-file-handler/actions?query=workflow%3ATest)
-[![Maintainability](https://api.codeclimate.com/v1/badges/063cfb039d7d9a2ff69d/maintainability)](https://codeclimate.com/github/yukihiko-shinoda/fixture-file-handler/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/063cfb039d7d9a2ff69d/test_coverage)](https://codeclimate.com/github/yukihiko-shinoda/fixture-file-handler/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/063cfb039d7d9a2ff69d/maintainability)](https://codeclimate.com/github/yukihiko-shinoda/fixture-file-handler/maintainability)
 [![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/yukihiko-shinoda/fixture-file-handler)](https://codeclimate.com/github/yukihiko-shinoda/fixture-file-handler)
 [![Updates](https://pyup.io/repos/github/yukihiko-shinoda/fixture-file-handler/shield.svg)](https://pyup.io/repos/github/yukihiko-shinoda/fixture-file-handler/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/fixturefilehandler)](https://pypi.org/project/fixturefilehandler/)
