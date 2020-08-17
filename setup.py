@@ -48,7 +48,7 @@ def main():
         test_suite="tests",
         tests_require=["pytest>=3"],
         url="https://github.com/yukihiko-shinoda/fixture-file-handler",
-        version="1.3.0",
+        version="1.4.0",
         zip_safe=False,
     )
 

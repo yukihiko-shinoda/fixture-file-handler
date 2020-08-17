@@ -6,7 +6,7 @@ from fixturefilehandler.factories import *  # noqa
 from fixturefilehandler.file_paths import *  # noqa
 from fixturefilehandler.fixture_file_handler import *  # noqa
 
-__version__ = "1.3.0"
+__version__ = "1.4.0"
 
 __all__: List[str] = []
 # pylint: disable=undefined-variable
